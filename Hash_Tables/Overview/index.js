@@ -8,8 +8,8 @@ const hash = (key, size) => {
 }
 
 class HashTable {
-    constructor() {
-        this.size = 20;
+    constructor(size) {
+        this.size = size;
         this.buckets = Array(this.size);
 
         for (let i = 0; i < this.buckets.length; i++) {
@@ -34,17 +34,16 @@ class HashTable {
         return this.buckets[idx].get(key), console.log(this.buckets[idx].get(key));
     }
 
-    show() {
-        console.log(this)
-    }
 }
 
-const hashTable = new HashTable();
+const hashTable = new HashTable(5);
 
 hashTable.insert('Spiderman', 'Peter Parker');
 hashTable.insert('Spiderwoman', 'Jessica Drew');
-hashTable.insert('Venom','Eddie Brock');
+hashTable.insert('Venom', 'Eddie Brock');
 
-// hashTable.show();
+console.log(hashTable.buckets);
 
-hashTable.search('Spiderman')
+hashTable.search('Spiderman');
+hashTable.search('Spiderwoman');
+hashTable.search('Venom');
