@@ -15,105 +15,85 @@ class LinkedList {
     addNodeHead(value) {
         this.head = new Node(value, this.head);
         this.size++;
+        console.log(`Node added at head.`);
     }
 
     // insert last node
-    addNode(value) {
+    addNodeLast(value) {
         let node = new Node(value);
         let current;
 
-        // if empty, make the head
+        // if linkedList is empty, add the head
         if (!this.head) {
             this.head = node;
+            console.log(`Node added at head.`);
         } else {
             current = this.head;
+
             while (current.next) {
                 current = current.next;
             }
+
             current.next = node;
         }
         this.size++;
+        console.log(`Node added at end with index of, ${this.size}.`);
     }
 
     // insert at index
     addNodeAt(value, index) {
-        console.log(index > 0);
-        console.log(index > this.size);
         // if index is out of range
-        if (index < 0 || index > this.size) {
-            console.log("Your index is either; less than 0 or larger than the size of the linked list. Try again bozo.");
+        if (index > 0 && index > this.size) {
+            console.log(`Index of, ${index}, is out of range. Try inputting an index between 0 and ${this.size}, inclusive.`);
             return;
-        } else {
-            console.log("Approved!");
         }
-        // if first index
+
+        // if index is 0, add at head
         if (index === 0) {
-            this.addNodeHead(value);
+            this.head = new Node(value, this.head);
+            this.size++;
+            console.log(`Node added at head.`)
             return;
         }
+
         const node = new Node(value);
         let current, previous;
 
         // set current to first
-        current = this.head;
-        let count = 0;
+        current = this.head
+        let count = 0
+
+        // we do this to fine the nodes before and after the index
         while (count < index) {
-            previous = current; // node before index
+            previous = current; //node before the index we want to insert
             count++;
-            current = current.next; // node after index
+            current = current.next; // node after the index
         }
+        // we make the next property of the node we want to insert the current node(the node after the index passed)
         node.next = current;
+        // and we make the next property of the previous node(node before the index) equal to the node. This is like attaching a chain link in the middle.
         previous.next = node;
+
         this.size++;
+        console.log(`Node added at desired index: ${index}.`)
     }
 
     // get at index
     getAt(index) {
-        let current = this.head;
-        let count = 0;
-        while (current) {
-            if (count === index) {
-                console.log(current.value);
-            }
-            count++;
-            current = current.next;
-        }
-        return null;
     }
 
     // remove at index
     removeAt(index) {
-        if (index < 0 || index > this.size) {
-            console.log("Your index is either; less than 0 or larger than the size of the linked list. Try again bozo.");
-            return;
-        } else {
-            console.log("Approved!");
-        }
-        let current = this.head;
-        let previous;
-        let count = 0;
-        if (index === 0) {
-            this.head = current.next;
-        } else {
-            while (count < index) {
-                count++;
-                previous = current;
-                current = current.next;
-            }
-            previous.next = current.next;
-        }
-        this.size--;
     }
     // clear list
     clearList() {
-        this.head = null;
-        this.size = 0;
     }
     // print list data
     printListData() {
         let current = this.head;
+
         while (current) {
-            console.log(current.value);
+            console.log(current.value)
             current = current.next;
         }
     }
@@ -123,11 +103,53 @@ let linkedList = new LinkedList();
 
 linkedList.addNodeHead(100);
 linkedList.addNodeHead(200);
-linkedList.clearList();
+linkedList.addNodeHead(300);
+linkedList.addNodeLast(400);
+linkedList.addNodeAt(500, 10);
 linkedList.printListData();
-linkedList.addNode(300);
-linkedList.addNodeHead(400);
-// linkedList.addNodeAt(500, -30);
 
-linkedList.removeAt(-33);
-linkedList.printListData();
+/*
+NODE
+{
+    value: 100,
+    next: null
+}
+LINKED LIST
+{
+    head: null
+}
+
+insert a node to linked list
+{
+    head: {
+        value:100,
+        next: null
+    }
+}
+
+then add another node of value 200 AT HEAD(replace head)
+{
+    head: {
+        value:200,
+        next: {
+            value: 100,
+            next: null
+        }
+    }
+}
+
+add another to head, of value 300
+{
+    head: {
+        value:300,
+        next: {
+            value: 200,
+            next: {
+                value:100,
+                next: null
+            }
+        }
+    }
+}
+
+*/
