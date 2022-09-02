@@ -6,39 +6,33 @@ Return the decimal value of the number in the linked list.
 
 The most significant bit is at the head of the linked list.
 
+https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
+
+
+NOTE: COPY AND PASTE UNCOMMENTED CODE INTO LEETCODE CODE SPACE.
 */
 
-class Node {
-    constructor(value, next = null) {
-        this.value = value;
-        this.next = next;
-    }
-}
+//  Definition for singly-linked list.
+// function ListNode(val, next) {
+//     this.val = (val === undefined ? 0 : val)
+//     this.next = (next === undefined ? null : next)
+
+//     return this, console.log(this);
+// }
 
 var getDecimalValue = function (head) {
-    let linkedList = {
-        head: null,
+    let currentNode = head;
+    let binaryString = '';
+    while(currentNode){
+        binaryString = binaryString + currentNode.val;
+        currentNode = currentNode.next;
     }
-
-    class Node {
-        constructor(value, next = null) {
-            this.value = value;
-            this.next = next;
-        }
-    }
-
-    let node1 = new Node(100, linkedList.head);
-    let node2 = new Node(200, linkedList.head);
     
-    linkedList.head = node1;
-    console.log(linkedList);
-    linkedList.head = node2;
-    console.log(linkedList);
-
+    return parseInt(binaryString, 2);
 };
 
-let head1 = [1, 0, 1];  // answer is 5; (101) in base 2 = (5) in base 10
-let head2 = [0];        // answer is 0;
+// let head1 = [1, 0, 1];  // answer is 5; (101) in base 2 = (5) in base 10
+// let head2 = [0];        // answer is 0;
 
-getDecimalValue(head1);
+// getDecimalValue(head1);
 // getDecimalValue(head2);
