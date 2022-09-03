@@ -19,11 +19,11 @@ function ListNode(val, next) {
 var getDecimalValue = function (head) {
     let currentNode = head;
     let binaryString = '';
-    while(currentNode){
+    while (currentNode) {
         binaryString = binaryString + currentNode.val;
         currentNode = currentNode.next;
     }
-    
+
     return parseInt(binaryString, 2), console.log(parseInt(binaryString, 2));
 };
 
